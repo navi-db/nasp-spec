@@ -26,6 +26,24 @@ While RESP is powerful and easy to implement, it lacks some protocol-level metad
 - Request IDs for asynchronous/multiplexed communication
 - Optional message types (e.g. `COMMAND`, `PING`, `AUTH`)
 
+## Message Format
+
+NASP messages consist of multiple lines, each terminated by `\r\n` (the CRLF terminator). The lines follow this structure:
+
+1. **Message type:** e.g., `REQ` or `RES`  
+2. **Request ID:** an integer identifying the request being sent or responded to  
+3. **Payload or status:** the actual command, status, or data associated with the message
+
+### Example response:
+
+```
+RES\r\n
+1\r\n
+OK\r\n
+```
+
+This indicates a response (`RES`) to request ID `1` with status `OK`. This type of response is commonly returned for a `PING` request, though other commands may also expect an `OK` response.
+
 ## Examples
 
 Below are examples of NASP requests and responses using the `COMMAND` message type.
@@ -34,7 +52,9 @@ Below are examples of NASP requests and responses using the `COMMAND` message ty
 
 **Client sends:**
 ```
-REQ 1 COMMAND\r\n
+REQ\r\n
+1\r\n
+COMMAND\r\n
 $3\r\n
 SET\r\n
 $5\r\n
@@ -45,7 +65,9 @@ banana\r\n
 
 **Server replies:**
 ```
-RES 1 OK\r\n
+RES\r\n
+1\r\n
+OK\r\n
 ```
 ---
 
@@ -53,7 +75,9 @@ RES 1 OK\r\n
 
 **Client sends:**
 ```
-REQ 2 COMMAND\r\n
+REQ\r\n
+2\r\n
+COMMAND\r\n
 $3\r\n
 GET\r\n
 $5\r\n
@@ -62,7 +86,9 @@ apple\r\n
 
 **Server replies:**
 ```
-RES 2 VALUE\r\n
+RES\r\n
+2\r\n
+VALUE\r\n
 $6\r\n
 banana\r\n
 ```
@@ -73,12 +99,16 @@ banana\r\n
 
 **Client sends:**
 ```
-REQ 3 PING\r\n
+REQ\r\n
+3\r\n
+PING\r\n
 ```
 
 **Server replies:**
 ```
-RES 3 OK\r\n
+RES\r\n
+3\r\n
+OK\r\n
 ```
 
 ---
@@ -112,6 +142,9 @@ NASP serializes data using a length-prefixed, line-delimited format inspired by 
 
 - **Strings:** UTF-8 encoded strings, either as simple strings prefixed with a plus sign (`+`) or bulk strings prefixed with a dollar sign (`$`)  
   Examples: `+OK\r\n` or `$4\r\nHello\r\n`
+
+> [!WARNING]
+> Simple strings cannot contain **either** the CR (\r) **or** LF (\n) characters
 
 - **Arrays:** Collections of elements, each recursively encoded in NASP format. Arrays are prefixed with an asterisk (`*`) and length-prefixed as well. Arrays can be nested to represent complex commands and structured data efficiently.
 
