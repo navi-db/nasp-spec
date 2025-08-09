@@ -55,6 +55,7 @@ Below are examples of NASP requests and responses using the `COMMAND` message ty
 REQ\r\n
 1\r\n
 COMMAND\r\n
+*3\r\n
 $3\r\n
 SET\r\n
 $5\r\n
@@ -78,6 +79,7 @@ OK\r\n
 REQ\r\n
 2\r\n
 COMMAND\r\n
+*2\r\n
 $3\r\n
 GET\r\n
 $5\r\n
