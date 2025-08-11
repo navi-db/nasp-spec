@@ -1,6 +1,6 @@
 # Navi Serialization Protocol (NASP)
 
-**NASP (Navi Serialization Protocol)** (pronounced NAH-vee) is the wire protocol used to communicate with Navi key-value database servers. Inspired by the [Redis Serialization Protocol (RESP)](https://redis.io/docs/latest/develop/reference/protocol-spec/), NASP builds upon RESP's strengths while removing ambiguity between **requests** and **responses**.
+The Navi (pronounced NAH-vee) Serialization Protocol, or NASP, is the wire protocol used to communicate with Navi key-value database servers. Inspired by the [Redis Serialization Protocol (RESP)](https://redis.io/docs/latest/develop/reference/protocol-spec/), NASP builds upon RESP's strengths while removing ambiguity between **requests** and **responses**.
 
 NASP is designed to be:
 
