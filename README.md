@@ -32,8 +32,8 @@ While RESP is powerful and easy to implement, it lacks some protocol-level metad
 
 NASP messages consist of multiple lines, each terminated by `\r\n` (the CRLF terminator). The lines follow this structure:
 
-1. **Message type:** e.g., `REQ` or `RES`  
-2. **Request ID:** an integer identifying the request being sent or responded to  
+1. **Message type:** e.g., `REQ` or `RES`
+2. **Request ID:** an integer identifying the request being sent or responded to
 3. **Payload or status:** the actual command, status, or data associated with the message
 
 ### Example response:
