@@ -41,10 +41,10 @@ NASP messages consist of multiple lines, each terminated by `\r\n` (the CRLF ter
 ```
 RES\r\n
 1\r\n
-OK\r\n
+PONG\r\n
 ```
 
-This indicates a response (`RES`) to request ID `1` with status `OK`. This type of response is commonly returned for a `PING` request, though other commands may also expect an `OK` response.
+This indicates a response (`RES`) to request ID `1` with status `PONG`. This type of response is commonly returned for a `PING` request, though other commands may expect an `OK` response.
 
 ## Examples
 
@@ -119,7 +119,7 @@ PING\r\n
 ```
 RES\r\n
 3\r\n
-OK\r\n
+PONG\r\n
 ```
 
 ---

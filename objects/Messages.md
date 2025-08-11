@@ -23,7 +23,7 @@ Every NASP message consists of **at least three lines**:
    The actual command, status, or data associated with the message.
    Examples include:
    - Command types like `COMMAND`, `PING`, `AUTH`
-   - Status strings like `OK`
+   - Status strings like `OK`, `PONG`
    - Data types such as arrays or bulk strings encoded using NASP serialisation rules
 
 ---
